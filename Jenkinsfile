@@ -12,9 +12,7 @@ pipeline {
 				sh 'cp env-example .env'
 
 				script {
-					withEnv(readFile('.env').split('\n') as List) {
-					    sh "echo ${HOST}"
-					}
+  					readProperties(file: '.env').each {key, value -> env[key] = value }
 				}
 
 				sh 'printenv'
