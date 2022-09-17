@@ -9,7 +9,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'pwd && ls -al'
+        sh '/var/jenkins_home/workspace/GhostBin_main/scripts/run-test.sh'
       }
     }
 
