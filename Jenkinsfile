@@ -10,7 +10,7 @@ pipeline {
 		stage('Test') {
 			steps {
 				sh 'cp env-example .env'
-
+				sh 'mkdir test/testdata'
 				script {
 					def props = readProperties  file: ".env"
     				keys= props.keySet()
@@ -22,6 +22,7 @@ pipeline {
 				}
 				sh 'printenv'
 				sh 'go test -v test/handlers_test.go'
+				sh 'rm -rf test/testdata'
 			}
     	}
 	}
