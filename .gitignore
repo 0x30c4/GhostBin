@@ -1,2 +1,3 @@
 test/testdata/*
 *.log
+.env

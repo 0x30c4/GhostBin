@@ -1,0 +1,14 @@
+HOST=localhost
+PORT=8080
+DOMAIN=http://localhost:8080
+DATA_DIR="./public"
+PASTE_DATA_PATH=""
+
+DB_HOST=.
+DB_PORT=.
+DB_NAME=.
+
+LOG_FILE="logs/gin.log"
+RELEASE_MODE=0
+
+
