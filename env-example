@@ -1,6 +1,6 @@
 HOST=localhost
 PORT=8080
-DOMAIN=http://localhost:8080
+DOMAIN="http://localhost:8080"
 DATA_DIR="./public"
 PASTE_DATA_PATH=""
 
