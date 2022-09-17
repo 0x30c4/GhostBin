@@ -54,7 +54,7 @@ func PostData(c *gin.Context) {
 
   	out, err := os.Create(env.DATA_DIR + "/" + uuidFileName)
 
-	log.Println(1)
+	log.Println(env.DATA_DIR, uuidFileName)
 
   	if err != nil {
   		log.Fatal(err)
