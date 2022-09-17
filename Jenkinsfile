@@ -14,7 +14,7 @@ pipeline {
 			loadEnvironmentVariablesFromFile(".env")
         }
 		sh 'env'
-        sh './scripts/run-test.sh'
+        sh 'go test -v test/handlers_test.go'
       }
     }
 
