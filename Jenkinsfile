@@ -20,7 +20,7 @@ pipeline {
     				}
 
 				}
-				sh 'ls -la test'
+				sh 'ls -laR test'
 				sh 'go test -v test/handlers_test.go'
 				sh 'rm -rf test/testdata'
 			}
