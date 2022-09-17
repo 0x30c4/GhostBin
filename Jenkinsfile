@@ -12,7 +12,13 @@ pipeline {
 				sh 'cp env-example .env'
 
 				script {
-					loadEnvironmentVariables(".env")
+					def props = readProperties  file: ".env"
+    				keys= props.keySet()
+    				for(key in keys) {
+        				value = props["${key}"]
+        				env."${key}" = "${value}"
+    				}
+
 				}
 
 				sh 'printenv'
@@ -20,13 +26,4 @@ pipeline {
 			}
     	}
 	}
-}
-
-def loadEnvironmentVariables(path){
-    def props = readProperties  file: path
-    keys= props.keySet()
-    for(key in keys) {
-        value = props["${key}"]
-        env."${key}" = "${value}"
-    }
 }
