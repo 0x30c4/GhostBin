@@ -15,7 +15,6 @@ pipeline {
 						sh "echo ${version}"
 					}
 				}
-				sh 'env'
 				sh 'go test -v test/handlers_test.go'
 			}
     	}
