@@ -11,7 +11,7 @@ pipeline {
 			steps {
 				sh 'cp env-example .env'
 
-				def varsFile = "var_file.txt"
+				def varsFile = ".env"
 				def content = readFile varsFile
 				def lines = content.split("\n")
 				for(l in lines){
