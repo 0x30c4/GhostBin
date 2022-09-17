@@ -20,7 +20,7 @@ pipeline {
     				}
 
 				}
-				sh 'printenv'
+				sh 'ls -la test'
 				sh 'go test -v test/handlers_test.go'
 				sh 'rm -rf test/testdata'
 			}
