@@ -89,7 +89,6 @@ func TestPostDataHandler(t *testing.T) {
 
 	originalFileStr := string(originalFile)
 
-	log.Println(originalFileStr, bodyString)
 	// Checking if the original file and the fetched data is same or not.
 	assert.Equal(t, originalFileStr, bodyString)
 
