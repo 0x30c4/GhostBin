@@ -9,6 +9,7 @@ pipeline {
 
     stage('Test') {
       steps {
+		sh 'cp env-example .env'
         script {
         	load "./.env"
         }
