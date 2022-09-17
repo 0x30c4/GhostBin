@@ -66,7 +66,7 @@ func PostData(c *gin.Context) {
 
 	// returnin the url of the paste
 	// remove the " from PASTE_DATA_PATH
-	pastePath := strings.Replace(env.PASTE_DATA_PATH, "\"", -1)
+	pastePath := strings.Replace(env.PASTE_DATA_PATH, "\"", "", -1)
   	filePath := filepath.Join(env.DOMAIN, pastePath, uuidFileName)
 	c.String(http.StatusCreated, filePath)
 }
