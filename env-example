@@ -1,7 +1,7 @@
 HOST=localhost
 PORT=8080
 DOMAIN=http://localhost:8080
-DATA_DIR=./test/testdata
+DATA_DIR=./testdata
 PASTE_DATA_PATH=""
 
 DB_HOST=""

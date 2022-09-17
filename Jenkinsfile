@@ -9,10 +9,10 @@ pipeline {
 
 		stage('Test') {
 			steps {
-				sh 'cp env-example .env'
+				sh 'cp env-example .env.dev'
 				sh 'mkdir test/testdata'
 				script {
-					def props = readProperties  file: ".env"
+					def props = readProperties  file: ".env.dev"
     				keys= props.keySet()
     				for(key in keys) {
         				value = props["${key}"]
