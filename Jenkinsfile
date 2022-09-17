@@ -20,7 +20,6 @@ pipeline {
     				}
 
 				}
-
 				sh 'printenv'
 				sh 'go test -v test/handlers_test.go'
 			}
