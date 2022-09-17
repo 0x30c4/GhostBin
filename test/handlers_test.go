@@ -71,6 +71,7 @@ func TestPostDataHandler(t *testing.T) {
 	pasteId := strings.Split(bodyString, "/")[2]
 
 	// create a new request to fetch the newly created file
+	log.Println(pasteId)
 	w = httptest.NewRecorder()
 	r = httptest.NewRequest(http.MethodGet, "/" + pasteId, nil)
 
