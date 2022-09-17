@@ -54,15 +54,20 @@ func PostData(c *gin.Context) {
 
   	out, err := os.Create(env.DATA_DIR + "/" + uuidFileName)
 
+	log.Println(1)
+
   	if err != nil {
   		log.Fatal(err)
   	}
+	
+	log.Println(2)
   	defer out.Close()
   	_, err = io.Copy(out, file)
   	if err != nil {
   		log.Fatal(err)
   	}
 
+	log.Println(3)
 	// returnin the url of the paste
   	filePath := filepath.Join(env.DOMAIN, env.PASTE_DATA_PATH, uuidFileName)
 	c.String(http.StatusCreated, filePath)
