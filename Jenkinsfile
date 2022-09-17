@@ -1,32 +1,23 @@
 pipeline {
-	agent any
-	stages {
-		stage('Checkout Code') {
-			steps {
-				git(url: 'https://github.com/0x30c4/GhostBin', branch: 'main')
-			}
-    	}
-
-		stage('Test') {
-			steps {
-				sh 'cp env-example .env'
-
-				script {
-					loadEnvironmentVariables(".env")
-				}
-
-				sh 'printenv'
-				sh 'go test -v test/handlers_test.go'
-			}
-    	}
-	}
-}
-
-def loadEnvironmentVariables(path){
-    def props = readProperties  file: path
-    keys= props.keySet()
-    for(key in keys) {
-        value = props["${key}"]
-        env."${key}" = "${value}"
+  agent any
+  stages {
+    stage('Checkout Code') {
+      steps {
+        git(url: 'https://github.com/0x30c4/GhostBin', branch: 'main')
+      }
     }
+
+    stage('Test') {
+      steps {
+        sh 'cp env-example .env'
+        script {
+          loadEnvironmentVariables(".env")
+        }
+
+        sh 'printenv'
+        sh 'go test -v test/handlers_test.go'
+      }
+    }
+
+  }
 }
