@@ -11,7 +11,7 @@ pipeline {
       steps {
 		sh 'cp env-example .env'
         script {
-        	load "./.env"
+			loadEnvironmentVariablesFromFile(".env")
         }
 		sh 'env'
         sh './scripts/run-test.sh'
