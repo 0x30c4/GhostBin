@@ -1,8 +1,9 @@
 # GhostBin
 
-[![Documentation](https://img.shields.io/badge/redis-documentation-informational)]()
-
-[![Documentation](https://img.shields.io/github/languages/top/0x30c4/GhostBin?style=flat-square)]()
+<center>
+  <img src="./assets/logo.png">
+  <img src="https://img.shields.io/github/languages/top/0x30c4/GhostBin?style=flat-square" alt="Test">
+</center>
 
 
 # Contribution
