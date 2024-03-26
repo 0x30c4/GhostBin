@@ -143,7 +143,7 @@ GhostBin can be easily deployed using Docker Compose. Follow these steps to depl
 ## Test
 I am presently working on writing the unit tests. 🫠 
 
-### current-test-coverage
+### Current Test Coverage
 <img src="./assets/testcover.svg">
 
 ## TODO
