@@ -1,7 +1,7 @@
 HOST="0.0.0.0"
 PORT=8080
-DOMAIN="localhost:8080"
-LOG_FILE="./logs/ghostbin_server_log.dev.log"
-PASTE_DIR="./data/pasteData_dev"
+DOMAIN="gbin.me"
+LOG_FILE="./logs/ghostbin_server_log.prod.log"
+PASTE_DIR="./data/pasteData"
 REDIS_ADDRESS="redis:6379"
-RELEASE_MODE=0
+RELEASE_MODE=1
