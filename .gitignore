@@ -1,5 +1,14 @@
+!./bin
+!./data/pasteData
+!./data/pasteData_dev
+!./tmp
+!./data/redis_data
+!./data/redis_data_dev
+
 data/pasteData/*
 data/pasteData_dev/*
+data/redis_data/*
+data/redis_data_dev/*
 bin/*
 tmp/*
 .env*
@@ -8,5 +17,3 @@ dump.rdb
 testcover.out
 testcover.html
 .DS_Store
-./data/redis_data
-./data/redis_data_dev
