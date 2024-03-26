@@ -88,7 +88,7 @@ Want to run a server like this? clone it! Remember centralization is bad.
 
 * [Docker](https://www.docker.com) - Platform and Software Deployment
 * [Go](https://go.dev) - Backend Frame-work.
-* [Redis](https://redis.io/) - DataStore DataStore 
+* [Redis](https://redis.io/) - DataStore DataStore
 
 ### Prerequisites.
 
@@ -109,13 +109,13 @@ GhostBin can be easily deployed using Docker Compose. Follow these steps to depl
     ```
 
 4. **Development Environment**:
-   
+
     ```bash
     make up-dev
     ```
 
 5. **Production Environment**:
-   
+
     ```bash
     make up-prod
     ```
@@ -141,7 +141,7 @@ GhostBin can be easily deployed using Docker Compose. Follow these steps to depl
     - `make exec-dev` / `make exec-prod`: Access the shell of the development/production container.
 
 ## Test
-I am presently working on writing the unit tests. 🫠 
+I am presently working on writing the unit tests. 🫠
 
 ### Current Test Coverage
 <img src="./assets/testcover.svg">
@@ -149,10 +149,12 @@ I am presently working on writing the unit tests. 🫠
 ## TODO
   - Write test for handlers
   - Refactor the code
+  - Write a pastebin client with shell script
+  - Write file delete daemon
 
 ## Contributing
 
-Contributions to GhostBin are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request on our [GitHub repository](link-to-repo).
+Contributions to GhostBin are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request on our [GitHub repository](https://github.com/0x30c4/GhostBin).
 
 ## License
 
@@ -167,6 +169,7 @@ For major changes, please open an issue first to discuss what you would like to 
 ## Donate
 You can support this project via Liberapay.
 The monthly hosting cost is right now 12 Dollar.
-<a href="https://liberapay.com/sanaf/donate"><img src="https://img.shields.io/liberapay/gives/1"></a>
+<br>
+<a target="_blank" href="https://liberapay.com/sanaf/donate"><img src="https://img.shields.io/liberapay/gives/1"></a>
 
 Monero wallet address: 83BDAy6tN99PVud2sUnjyoMzsUDdXJCoMjjwJ59cVwPF91RccxLWCVsfD9imMqxUaMhMG1brzuVBeAM4KREUSf9U9efbKx1
