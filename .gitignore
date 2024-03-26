@@ -11,6 +11,7 @@ data/redis_data/*
 data/redis_data_dev/*
 bin/*
 tmp/*
+.null*
 .env*
 dump.rdb
 *.log
