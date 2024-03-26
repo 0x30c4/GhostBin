@@ -12,6 +12,10 @@
   <a href="mailto:support@gbin.me"> support@gbin.me </a>
 </p>
 
+<br>
+<img src="./assets/ghostbindemo.gif">
+<br>
+
 ## Table of Contents
 
 - [How To Use GhostBin](#how-to-use-ghostbin)
