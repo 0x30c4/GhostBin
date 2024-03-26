@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: ghostbin_backend_dev
+    build:
+      dockerfile: ./Dockerfile.dev
+    command: "air"
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    links:
+      - redis
+    depends_on:
+      - redis
+    env_file:
+      - .env.dev
+
+  redis:
+    image: redis:alpine
+    container_name: ghostbin_redis_dev
+    restart: always
+    command: redis-server --include /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis_data_dev:/data

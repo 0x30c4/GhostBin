@@ -1,0 +1,12 @@
+data/pasteData/*
+data/pasteData_dev/*
+bin/*
+tmp/*
+.env*
+dump.rdb
+*.log
+testcover.out
+testcover.html
+.DS_Store
+./data/redis_data
+./data/redis_data_dev

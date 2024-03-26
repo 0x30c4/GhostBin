@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  app:
+    container_name: ghostbin_backend
+    build: .
+    command: "sleep 10000"
+    links:
+      - redis
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+    env_file:
+      - .env.prod
+    volumes:
+      - ./data/pasteData:/app/data/pasteData
+      - ./logs/:/app/logs
+
+  redis:
+    image: redis:alpine
+    container_name: ghostbin_redis
+    restart: always
+    command: redis-server --include /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis_data:/data

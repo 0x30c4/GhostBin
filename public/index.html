@@ -1,0 +1,84 @@
+<pre>
+How To Use GhostBin
+-------------------
+  * Basic usage.
+  -------------
+  $ curl -F "f=@filename.ext" gbin.me
+
+  * Pipe output of a command.
+  --------------------------
+  $ cat file | curl -F "f=@-" gbin.me
+  $ find /var/log/nginx -name "*.log" | curl -F "f=@-" gbin.me
+
+  * Burn And Expire.
+
+  * This paste will expire after 69 seconds. Max Value: 18446744073709551615
+  --------------------------------------------------------------------------
+  $ curl -F "f=@filename.ext" -F "expire=69" gbin.me
+
+  * This paste will expire after 3 reads.
+  --------------------------------------
+  $ curl -F "f=@filename.ext" -F "read=3" gbin.me
+
+  * If you don't want the resulting URL to be easy to guess.
+    You can chose a URL length between 8 to 255.
+  ---------------------------------------------------------
+  $ curl -F "f=@filename.ext" -F "deepurl=3" gbin.me
+
+  * You can delete a paste only if a secret value was set.
+    If you haven't provided any secret while creating the
+    paste, it will be automatically deleted after 69 days.
+  --------------------------------------------------------
+  $ curl -F "f=@filename.ext" -F "secret=password" gbin.me
+
+  * Now in order to delete it you have to mention the secret
+    and use the DELETE method on the paste URL.
+  --------------------------------------------------------
+  $ curl -XDELETE -F "secret=password" gbin.me/pasteid
+
+EXAMPLE
+  * This will create a URL of length 12. It will expire after
+    69 seconds and you can only view it 1 time.
+  -----------------------------------------------------------
+  $ curl -F "f=@filename.ext" -F "deepurl=12" -F "expire=69" -F "read=1" gbin.me
+
+
+TERMS OF SERVICE
+----------------
+
+gbin.me is NOT a platform for:
+  * engaging in piracy
+  * hosting pornography and gore
+  * distributing extremist material of any kind
+  * facilitating malware or botnet Command and Control
+  * dealing with anything related to cryptocurrencies
+  * storing backups
+  * storing CI build artifacts
+  * engaging in doxxing or hosting database dumps containing personal information
+  * hosting anything illegal under United States law
+
+Uploads found to be in violation of these rules will be promptly removed, and the originating IP address will be blocked from further uploads.
+
+
+PRIVACY POLICY
+--------------
+
+For moderation purposes, the following data is stored with each uploaded file:
+  * IP address
+  * User agent string
+
+While this site generally does not log requests, logging may be enabled if necessary for purposes such as threat mitigation.
+
+No data is shared with third parties.
+
+
+Contact the maintainer via <a href="mailto:support@gbin.me">support@gbin.me</a>
+
+You can support this project via Liberapay.
+The monthly hosting cost is right now 12 Dollar.
+<a href="https://liberapay.com/sanaf/donate"><img src="https://img.shields.io/liberapay/gives/1"></a>
+
+Monero wallet address: 83BDAy6tN99PVud2sUnjyoMzsUDdXJCoMjjwJ59cVwPF91RccxLWCVsfD9imMqxUaMhMG1brzuVBeAM4KREUSf9U9efbKx1
+
+
+</pre>
