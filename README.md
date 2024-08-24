@@ -41,7 +41,7 @@
 
 ### Command Line Client
 
-You can use this script to upload your pastes easily.
+You can use this script to upload your pastes easily. <a href="https://raw.githubusercontent.com/0x30c4/GhostBin/main/gbin.sh"> gbin.sh </a>
 
 ```bash
 Usage: gbin.sh [-f filename] [-e expire_seconds] [-r max_reads] [-d deepurl_length] [-s secret]
