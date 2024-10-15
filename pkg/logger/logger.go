@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/0x30c4/ghostbin/internal/middleware"
+	"github.com/0x30c4/ghostbin/pkg/middleware"
 )
 
 func LogRequest(handler http.Handler) http.Handler {

@@ -5,9 +5,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/0x30c4/ghostbin/internal/env"
-	"github.com/0x30c4/ghostbin/internal/logger"
-	"github.com/0x30c4/ghostbin/internal/redis"
+	"github.com/0x30c4/ghostbin/pkg/env"
+	"github.com/0x30c4/ghostbin/pkg/logger"
+	"github.com/0x30c4/ghostbin/pkg/redis"
 	"github.com/alicebob/miniredis/v2"
 )
 

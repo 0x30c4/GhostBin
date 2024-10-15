@@ -3,7 +3,7 @@ package routes
 import (
 	"net/http"
 
-	"github.com/0x30c4/ghostbin/internal/handlers"
+	"github.com/0x30c4/ghostbin/pkg/handlers"
 )
 
 func Router() http.Handler {

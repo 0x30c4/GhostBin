@@ -12,7 +12,7 @@ import (
 	"strconv"
   "net/http"
   "math/rand"
-	"github.com/0x30c4/ghostbin/internal/env"
+	"github.com/0x30c4/ghostbin/pkg/env"
 )
 
 func CheckIfBrowser(userAgent string) bool {

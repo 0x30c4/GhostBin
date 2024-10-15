@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/0x30c4/ghostbin/internal/env"
-	"github.com/0x30c4/ghostbin/internal/logger"
+	"github.com/0x30c4/ghostbin/pkg/env"
+	"github.com/0x30c4/ghostbin/pkg/logger"
 )
 
 func TestLogger(t *testing.T) {

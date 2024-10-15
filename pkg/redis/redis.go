@@ -5,7 +5,7 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/0x30c4/ghostbin/internal/env"
+	"github.com/0x30c4/ghostbin/pkg/env"
 	"github.com/redis/go-redis/v9"
 )
 

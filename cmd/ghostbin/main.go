@@ -5,11 +5,11 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/0x30c4/ghostbin/internal/env"
-	"github.com/0x30c4/ghostbin/internal/logger"
-	"github.com/0x30c4/ghostbin/internal/middleware"
-	"github.com/0x30c4/ghostbin/internal/redis"
-	"github.com/0x30c4/ghostbin/internal/routes"
+	"github.com/0x30c4/ghostbin/pkg/env"
+	"github.com/0x30c4/ghostbin/pkg/logger"
+	"github.com/0x30c4/ghostbin/pkg/middleware"
+	"github.com/0x30c4/ghostbin/pkg/redis"
+	"github.com/0x30c4/ghostbin/pkg/routes"
 )
 
 func main() {
