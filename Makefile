@@ -14,7 +14,6 @@ restart-dev:
 exec-dev:
 	docker exec -it ghostbin_backend_dev bash
 
-
 up-prod:
 	docker-compose up -d --build --force-recreate
 
@@ -32,3 +31,12 @@ logs:
 
 logs-tail:
 	docker-compose logs -f
+
+gen-test-cover-svg:
+	go install github.com/nikolaydubina/go-cover-treemap@latest
+	go test -coverprofile cover.out ./...
+	go-cover-treemap -coverprofile cover.out > ./assets/testcover.svg
+	rm ./cover.out
+
+backend-test:
+	go test -v ./...

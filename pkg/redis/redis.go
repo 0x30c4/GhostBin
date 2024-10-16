@@ -2,160 +2,52 @@ package redis
 
 import (
 	"context"
-	"log"
+	"fmt"
+	"os"
 	"strconv"
+	"time"
 
-	"github.com/0x30c4/ghostbin/pkg/env"
 	"github.com/redis/go-redis/v9"
 )
 
-type PasteModel struct {
-  PasteId   string `redis:"PasteId"`
-  BurnAfter uint64 `redis:"BurnAfter"`
-  ReadCount uint64 `redis:"ReadCount"`
-  DeepUrl   uint8  `redis:"DeepUrl"`
-  Secret    string `redis:"Secret"`
-}
+// Defaults.
+const (
+  PoolSize = 10
+	MaxActiveConns = 5
+	MinIdleConns = 2
 
-var REDIS_CLIENT *redis.Client
+	PoolTimeoutSec = 30
+)
 
-var ctx = context.Background()
 
-func InitRedis() error {
-  // Connect to Redis server
-  REDIS_CLIENT = redis.NewClient(&redis.Options{
-      Addr:     env.REDIS_ADDRESS, // Redis server address
-      Password: "",               // No password set
-      DB:       0,                // Use default DB
-  })
-
-  // Ping the Redis server to check if connection was successful
-  _, err := REDIS_CLIENT.Ping(ctx).Result()
+func NewConnectionFromEnvVar() (*redis.Client, error) {
+  address := os.Getenv("REDIS_ADDRESS")
+  password := os.Getenv("REDIS_PASSWORD")
+  db, err := strconv.Atoi(os.Getenv("REDIS_DB_NUMBER"))
 
   if err != nil {
-    log.Println(err)
-    return err
-  }
-  return nil
-}
-
-func GetNewPasteID() (string, error) {
-
-  tx := REDIS_CLIENT.TxPipeline()
-
-  tx.Incr(ctx, "totalPaste")
-  totalPaste := tx.Get(ctx, "totalPaste")
-
-  _, err := tx.Exec(ctx)
-  if err != nil {
-    log.Println(err)
-    return "", err
+    return nil, fmt.Errorf("Redis DB number error: %s", err.Error())
   }
 
-  totalPasteValue, err := totalPaste.Int64()
+  pool := getRedisConnectionPool(address, password, db)
 
-  if err != nil {
-    return "", err
-  }
-
-  newPasteID := strconv.FormatInt(int64(totalPasteValue), 16)
-
-  return newPasteID, nil
-}
-
-func PutPasteRDB(pasteModel PasteModel) error {
-
-  if pasteModel.ReadCount == 0 {
-    return nil
-  }
-
-  key := "pasteId:" + pasteModel.PasteId
-
-  err := REDIS_CLIENT.HSet(ctx, key, pasteModel).Err()
-
-  if err != nil {
-    return err
-  }
-
-  err = REDIS_CLIENT.Do(ctx, "EXPIRE", key, pasteModel.BurnAfter).Err()
-
-  return err
-}
-
-func IsPasteExist(pasteId string) bool {
-  key := "pasteId:" + pasteId
-  exists, err := REDIS_CLIENT.Exists(ctx, key).Result()
-  if err != nil {
-      log.Println("Error checking key existence:", err)
-      return false
-  }
-
-  if exists > 0 {
-    return true
-  } else {
-    return false
-  }
-}
-
-
-func GetPasteRDB(pasteId string) (bool, error) {
-  key := "pasteId:" + pasteId
-
-  res := REDIS_CLIENT.HGetAll(ctx, key)
-
-  err := res.Err()
-  if err != nil {
-		return false, err
-	}
-
-  var pasteModel PasteModel
-
-  err = res.Scan(&pasteModel)
-
-  if (PasteModel{}) == pasteModel {
-    return false, nil
-  }
-
+  ctx := context.Background()
+  _, err = pool.Ping(ctx).Result()
 	if err != nil {
-    return false, err
+		return nil, fmt.Errorf("Failed to connect to Redis: %s", err.Error())
 	}
 
-  if pasteModel.ReadCount <= 1 {
-    _ = REDIS_CLIENT.Del(ctx, key)
-    return true, nil
-  }
-  err = REDIS_CLIENT.HIncrBy(ctx, key, "ReadCount", -1).Err()
-
-  if err != nil {
-    return false, nil
-  }
-
-  return true, nil
+  return pool, nil
 }
 
-
-func DeletePasteRDB(pasteId string, secret string) (bool, error) {
-  key := "pasteId:" + pasteId
-
-  secretDB, err := REDIS_CLIENT.HGet(ctx, key, "Secret").Result()
-
-  if err != nil {
-    return false, err
-  }
-
-  if len(secretDB) == 0 {
-    return false, nil
-  }
-
-  if secretDB != secret {
-    return false, nil
-  }
-
-  _, err = REDIS_CLIENT.Del(ctx, key).Result()
-
-  if err != nil {
-    return false, err
-  }
-
-  return true, nil
+func getRedisConnectionPool(address, password string, db int) *redis.Client {
+	return redis.NewClient(&redis.Options{
+		Addr:           address, // Redis server address
+		Password:       password,               // No password by default
+		DB:             db,                // Use default DB
+		PoolSize:       PoolSize,               // Maximum number of connections
+    MaxActiveConns: MaxActiveConns,
+		MinIdleConns:   MinIdleConns,               // Minimum number of idle connections
+		PoolTimeout:    time.Duration(PoolTimeoutSec) * time.Second, // Timeout for getting a connection from the pool
+	})
 }

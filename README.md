@@ -227,8 +227,6 @@ I am presently working on writing the unit tests. 🫠
 
 ## TODO
   - Write test for handlers
-  - Refactor the code
-  - Write a pastebin client with shell script
   - Write file delete daemon
 
 ## Contributing

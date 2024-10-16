@@ -4,8 +4,10 @@ go 1.22.1
 
 require (
 	github.com/alicebob/miniredis/v2 v2.32.1
+	github.com/joho/godotenv v1.5.1
 	github.com/redis/go-redis/v9 v9.5.1
 	github.com/stretchr/testify v1.9.0
+	golang.org/x/exp v0.0.0-20241009180824-f66d83c29e7c
 )
 
 require (

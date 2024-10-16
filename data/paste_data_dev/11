@@ -1,0 +1,15 @@
+HOST="0.0.0.0"
+PORT=8080
+DOMAIN="gbin.me"
+LOG_FILE_PATH="./logs/ghostbin_server_log.dev.log"
+PASTE_UPLOAD_DIR="./data/paste_data_dev"
+MAX_FILE_SIZE=2MB
+RELEASE_MODE=dev
+LOG_AS_TEXT=true
+
+INDEX_FILE="./public/index.html"
+INDEX_FILE_CLI="./public/index_cli.html"
+
+REDIS_ADDRESS="192.168.0.114:6379"
+REDIS_DB_NUMBER=0
+REDIS_PASSWORD=
