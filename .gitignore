@@ -18,3 +18,4 @@ dump.rdb
 testcover.out
 testcover.html
 .DS_Store
+data/paste_data_dev/*
