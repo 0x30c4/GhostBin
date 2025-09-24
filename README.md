@@ -12,12 +12,27 @@
   <a href="mailto:support@gbin.me"> support@gbin.me </a>
 </p>
 
+## Why GhostBin?
+
+I built GhostBin because I used to rely on ix.io, a similar service that provided a simple and efficient way to share text snippets and command outputs. However, ix.io has been down for a long time, leaving a gap for developers who needed a reliable, lightweight pastebin service.
+
+Rather than waiting for ix.io to return or settling for bloated alternatives, I decided to build my own solution. GhostBin fills that void by providing:
+
+- **Simplicity**: Clean, minimal interface focused on functionality
+- **Performance**: Built with Go and Redis for speed and efficiency  
+- **Reliability**: Self-hostable, so you're never dependent on external services
+- **CLI-Friendly**: Perfect for piping command outputs and automating workflows
+- **Privacy-Focused**: Control your own data by hosting your own instance
+
+GhostBin brings back the simplicity and reliability that made ix.io so beloved by the developer community.
+
 <br>
 <img src="./assets/ghostbindemo.gif">
 <br>
 
 ## Table of Contents
 
+- [Why GhostBin?](#why-ghostbin)
 - [How To Use GhostBin](#how-to-use-ghostbin)
   - [Command Line Cient](#cli-client)
   - [Basic Usage](#basic-usage)
@@ -181,43 +196,115 @@ GhostBin can be easily deployed using Docker Compose. Follow these steps to depl
 
 2. **Configuration**: Duplicate the `env-example` file and rename it as `.env.dev` for local development or `.env.prod` for the production environment. Customize the contents of these files according to your requirements.
 
-3. **Build**: Build the Docker images for GhostBin using the provided Makefile command:
+3. **Build Commands**: 
+
+    Build the Docker images for GhostBin using the provided Makefile commands:
 
     ```bash
+    # Build production Docker image
     make build
+    
+    # Build development Docker image  
+    make build-dev
+    
+    # Build production Docker image (alias)
+    make build-prod
     ```
 
 4. **Development Environment**:
 
+    Start the development environment with hot reload:
+
     ```bash
+    # Start development environment
     make up-dev
+    
+    # Start development environment in background
+    make up-dev-detached
+    
+    # Stop development environment
+    make down-dev
+    
+    # Restart development environment
+    make restart-dev
+    
+    # Access development container shell
+    make exec-dev
     ```
 
 5. **Production Environment**:
 
+    Deploy the production environment:
+
     ```bash
+    # Start production environment
+    make up-prod
+    
+    # Stop production environment
+    make down-prod
+    
+    # Restart production environment
+    make restart-prod
+    
+    # Access production container shell
+    make exec-prod
+    ```
+
+6. **Logging Commands**:
+
+    Monitor your application with comprehensive logging commands:
+
+    ```bash
+    # View production logs
+    make logs
+    
+    # Follow production logs in real-time
+    make logs-tail
+    
+    # View development logs
+    make logs-dev
+    
+    # Follow development logs in real-time
+    make logs-dev-tail
+    ```
+
+7. **Utility Commands**:
+
+    ```bash
+    # Clean Docker system and volumes
+    make clean
+    
+    # Clean all Docker data
+    make clean-all
+    
+    # Run Go tests
+    make backend-test
+    
+    # Generate test coverage SVG
+    make gen-test-cover-svg
+    
+    # Show all available commands
+    make help
+    ```
+
+8. **Quick Start**:
+
+    For development:
+    ```bash
+    git clone https://github.com/0x30c4/GhostBin.git
+    cd GhostBin
+    cp env-example .env.dev
+    make up-dev
+    ```
+
+    For production:
+    ```bash
+    git clone https://github.com/0x30c4/GhostBin.git
+    cd GhostBin
+    cp env-example .env.prod
+    # Edit .env.prod with your production settings
     make up-prod
     ```
-
-6. **Access Logs**:
-
-    To access logs, you can use:
-
-    ```bash
-    make logs
-    ```
-
-    To tail logs in real-time:
-
-    ```bash
-    make logs-tail
-    ```
-
-7. **Additional Commands**:
-
-    - `make down-dev` / `make down-prod`: Shutdown the development/production environment.
-    - `make restart-dev` / `make restart-prod`: Restart the development/production environment.
-    - `make exec-dev` / `make exec-prod`: Access the shell of the development/production container.
 
 ## Test
 I am presently working on writing the unit tests. 🫠
