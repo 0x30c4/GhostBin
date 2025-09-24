@@ -1,17 +1,14 @@
-version: '3.8'
-
 services:
   app:
     container_name: ghostbin_backend_dev
     build:
+      context: .
       dockerfile: ./Dockerfile.dev
     command: "air"
     volumes:
       - .:/app
     ports:
-      - "8080:8080"
-    links:
-      - redis
+      - "${HOST}:${PORT}:${PORT}"
     depends_on:
       - redis
     env_file:

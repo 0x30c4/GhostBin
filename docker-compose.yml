@@ -1,13 +1,9 @@
-version: '3.8'
 services:
   app:
     container_name: ghostbin_backend
     build: .
-    command: "sleep 10000"
-    links:
-      - redis
     ports:
-      - "8080:8080"
+      - "${HOST}:${PORT}:${PORT}"
     depends_on:
       - redis
     env_file:
