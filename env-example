@@ -10,6 +10,6 @@ LOG_AS_TEXT=true
 INDEX_FILE="./public/index.html"
 INDEX_FILE_CLI="./public/index_cli.html"
 
-REDIS_ADDRESS="192.168.0.114:6379"
+REDIS_ADDRESS="redis:6379"
 REDIS_DB_NUMBER=0
 REDIS_PASSWORD=
