@@ -19,7 +19,7 @@ I built GhostBin because I used to rely on ix.io, a similar service that provide
 Rather than waiting for ix.io to return or settling for bloated alternatives, I decided to build my own solution. GhostBin fills that void by providing:
 
 - **Simplicity**: Clean, minimal interface focused on functionality
-- **Performance**: Built with Go and Redis for speed and efficiency  
+- **Performance**: Built with Go and Redis for speed and efficiency
 - **Reliability**: Self-hostable, so you're never dependent on external services
 - **CLI-Friendly**: Perfect for piping command outputs and automating workflows
 - **Privacy-Focused**: Control your own data by hosting your own instance
@@ -57,6 +57,12 @@ GhostBin brings back the simplicity and reliability that made ix.io so beloved b
 ### Command Line Client
 
 You can use this script to upload your pastes easily. <a href="https://raw.githubusercontent.com/0x30c4/GhostBin/main/gbin.sh"> gbin.sh </a>
+
+```bash
+eof@gbin ~ $ curl https://raw.githubusercontent.com/0x30c4/GhostBin/main/gbin.sh -O
+eof@gbin ~ $ sudo cp gbin.sh /usr/bin/
+eof@gbin ~ $ sudo chmod +x /usr/bin/gbin.sh
+```
 
 ```bash
 Usage: gbin.sh [-f filename] [-e expire_seconds] [-r max_reads] [-d deepurl_length] [-s secret]
@@ -196,17 +202,17 @@ GhostBin can be easily deployed using Docker Compose. Follow these steps to depl
 
 2. **Configuration**: Duplicate the `env-example` file and rename it as `.env.dev` for local development or `.env.prod` for the production environment. Customize the contents of these files according to your requirements.
 
-3. **Build Commands**: 
+3. **Build Commands**:
 
     Build the Docker images for GhostBin using the provided Makefile commands:
 
     ```bash
     # Build production Docker image
     make build
-    
-    # Build development Docker image  
+
+    # Build development Docker image
     make build-dev
-    
+
     # Build production Docker image (alias)
     make build-prod
     ```
@@ -218,16 +224,16 @@ GhostBin can be easily deployed using Docker Compose. Follow these steps to depl
     ```bash
     # Start development environment
     make up-dev
-    
+
     # Start development environment in background
     make up-dev-detached
-    
+
     # Stop development environment
     make down-dev
-    
+
     # Restart development environment
     make restart-dev
-    
+
     # Access development container shell
     make exec-dev
     ```
@@ -239,13 +245,13 @@ GhostBin can be easily deployed using Docker Compose. Follow these steps to depl
     ```bash
     # Start production environment
     make up-prod
-    
+
     # Stop production environment
     make down-prod
-    
+
     # Restart production environment
     make restart-prod
-    
+
     # Access production container shell
     make exec-prod
     ```
@@ -257,13 +263,13 @@ GhostBin can be easily deployed using Docker Compose. Follow these steps to depl
     ```bash
     # View production logs
     make logs
-    
+
     # Follow production logs in real-time
     make logs-tail
-    
+
     # View development logs
     make logs-dev
-    
+
     # Follow development logs in real-time
     make logs-dev-tail
     ```
@@ -273,16 +279,16 @@ GhostBin can be easily deployed using Docker Compose. Follow these steps to depl
     ```bash
     # Clean Docker system and volumes
     make clean
-    
+
     # Clean all Docker data
     make clean-all
-    
+
     # Run Go tests
     make backend-test
-    
+
     # Generate test coverage SVG
     make gen-test-cover-svg
-    
+
     # Show all available commands
     make help
     ```
