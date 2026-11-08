@@ -35,7 +35,13 @@ func main() {
 	)
 
 	if uploadDir == "" {
-		uploadDir = "/var/tmp" // Assuming systemd PrivateTmp
+		uploadDir = "/var/tmp/ghostbin"
+		// Creating directory if it does not exist
+		err := os.MkdirAll(uploadDir, 0644)
+		if err != nil {
+			slog.Error("Couldn't create temp directory, exiting.", slog.Any("error", err), slog.String("directory", uploadDir))
+			os.Exit(1)
+		}
 		slog.Info("No upload directory provided, defaulting to", slog.String("directory", uploadDir))
 	}
 
