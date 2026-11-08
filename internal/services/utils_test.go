@@ -1,9 +1,9 @@
 package services
 
 import (
-	"testing"
 	"regexp"
 	"strings"
+	"testing"
 )
 
 // TestRandomPasteIdPrefix tests the randomPasteIdPrefix function

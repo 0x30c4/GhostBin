@@ -194,6 +194,21 @@ Want to run a server like this? clone it! Remember centralization is bad.
 
 Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [make](https://tldp.org/HOWTO/Software-Building-HOWTO-3.html) and [Docker](https://www.docker.com/products/docker-desktop) installed.
 
+### Bare metal on linux
+
+Build GhostBin direcly by skipping Docker:
+
+```bash
+go build -o ghostbin -ldflags="-w -s" ./cmd/webapp/main.go
+useradd --system ghostbin --home-dir /var/ghostbin --create-home --shell /usr/bin/nologin
+usermod --lock ghostbin
+install --mode 755 ghostbin /usr/local/bin/ghostbin
+install --mode 644 systemd/ghostbin.service /etc/systemd/system/ghostbin.service
+cp --recursive public /var/ghostbin/public
+chown --recursive ghostbin:ghostbin /var/ghostbin
+mkdir /var/log/ghostbin     # Optional, will log to stdout if failed
+```
+
 ### Docker Compose
 
 GhostBin can be easily deployed using Docker Compose. Follow these steps to deploy GhostBin:

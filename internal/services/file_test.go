@@ -9,18 +9,18 @@ import (
 
 func TestFileUpload(t *testing.T) {
 
-  rdb, s := setupTestRedis(t)
-  defer s.Close()
+	rdb, s := setupTestRedis(t)
+	defer s.Close()
 
-  uploadDir := "../../data/paste_data_dev"
+	uploadDir := "../../data/paste_data_dev"
 
-  pasteRepo := repositories.NewPasteRepository(rdb)
+	pasteRepo := repositories.NewPasteRepository(rdb)
 
-  fileSrv := NewFileService(pasteRepo, uploadDir, "1212")
+	fileSrv := NewFileService(pasteRepo, uploadDir, "1212")
 
-  str := "hello\nsdssdasdasd"
+	str := "hello\nsdssdasdasd"
 
-  file := strings.NewReader(str)
+	file := strings.NewReader(str)
 
-  fileSrv.SaveFile("hello", 12, file)
+	fileSrv.SaveFile("hello", 12, file)
 }

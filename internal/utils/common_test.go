@@ -24,13 +24,13 @@ func TestParseSizeToBytes(t *testing.T) {
 		{"1KB", 1024, false},
 
 		// Invalid cases
-		{"", 0, true},              // Empty input
-		{"2", 0, true},             // Missing unit
-		{"2XYZ", 0, true},          // Invalid unit
-		{"invalid", 0, true},       // Non-numeric input
-		{"2.5MB", 0, true},         // Invalid numeric format
-		{"-2MB", 0, true},          // Negative numbers
-		{"10MB B", 0, true},        // Invalid format with space
+		{"", 0, true},        // Empty input
+		{"2", 0, true},       // Missing unit
+		{"2XYZ", 0, true},    // Invalid unit
+		{"invalid", 0, true}, // Non-numeric input
+		{"2.5MB", 0, true},   // Invalid numeric format
+		{"-2MB", 0, true},    // Negative numbers
+		{"10MB B", 0, true},  // Invalid format with space
 	}
 
 	// Iterate over each test case

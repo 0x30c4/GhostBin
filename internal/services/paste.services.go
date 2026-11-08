@@ -23,30 +23,30 @@ func (s *PasteService) CreateNewPaste(ctx context.Context, burnAfter, readCount 
 		return pasteID, err
 	}
 
-  if readCount == 0 {
-    readCount = 4096
-  }
+	if readCount == 0 {
+		readCount = 4096
+	}
 
-  if burnAfter == 0 {
-    burnAfter = 5961600
-  }
+	if burnAfter == 0 {
+		burnAfter = 5961600
+	}
 
-  if deepUrl >= 8 {
-    var longPasteId string
-    var checkStatus bool
-    for i := 0; i <= 8; i++ {
-      longPasteId = randomPasteIdPrefix(deepUrl)
-      checkStatus, err = s.IsPasteExist(ctx, longPasteId)
-      if !checkStatus {
-        pasteID = longPasteId
-        break
-      }
-      if i == 8 && checkStatus {
-        pasteID = ""
-        return pasteID, err
-      }
-    }
-  }
+	if deepUrl >= 8 {
+		var longPasteId string
+		var checkStatus bool
+		for i := 0; i <= 8; i++ {
+			longPasteId = randomPasteIdPrefix(deepUrl)
+			checkStatus, err = s.IsPasteExist(ctx, longPasteId)
+			if !checkStatus {
+				pasteID = longPasteId
+				break
+			}
+			if i == 8 && checkStatus {
+				pasteID = ""
+				return pasteID, err
+			}
+		}
+	}
 
 	err = s.pasteRepo.CreatePaste(ctx, pasteID, burnAfter, readCount, deepUrl, secret)
 	if err != nil {
@@ -68,7 +68,7 @@ func (s *PasteService) IsPasteExist(ctx context.Context, pasteID string) (bool, 
 // GetPaste retrieves a paste by ID, decrements its read count, and deletes it if the read count is exhausted
 func (s *PasteService) GetPaste(ctx context.Context, pasteID string) (bool, error) {
 
-  var exists bool = false
+	var exists bool = false
 	if pasteID == "" {
 		return exists, errors.New("pasteID cannot be empty")
 	}

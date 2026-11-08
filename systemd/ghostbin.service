@@ -1,0 +1,44 @@
+[Unit]
+Description=Ghostbin
+After=network.target
+
+[Service]
+Type=simple
+
+User=ghostbin
+Group=ghostbin
+
+WorkingDirectory=/var/ghostbin
+
+EnvironmentFile=/etc/ghostbin/ghostbin.env
+
+ExecStart=/usr/local/bin/ghostbin
+
+Restart=on-failure
+RestartSec=5
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+
+# Security
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectClock=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+
+# Only needed directories
+ReadWritePaths=/var/ghostbin /var/log/ghostbin
+
+# Listening on :8080 by default, no need to add capabilities
+#AmbientCapabilities=
+
+[Install]
+WantedBy=multi-user.target

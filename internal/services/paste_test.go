@@ -13,24 +13,24 @@ import (
 )
 
 func setupTestRedis(t *testing.T) (*redis.Client, *miniredis.Miniredis) {
-  // Start a mini Redis server
-  s, err := miniredis.Run()
-  if err != nil {
-    t.Fatalf("an error occurred: %v", err)
-  }
+	// Start a mini Redis server
+	s, err := miniredis.Run()
+	if err != nil {
+		t.Fatalf("an error occurred: %v", err)
+	}
 
-  // Create a Redis client for testing
-  rdb := redis.NewClient(&redis.Options{
-    Addr: s.Addr(),
-  })
+	// Create a Redis client for testing
+	rdb := redis.NewClient(&redis.Options{
+		Addr: s.Addr(),
+	})
 
-  return rdb, s
+	return rdb, s
 }
 
 func TestBasicServices(t *testing.T) {
 	// Setup Redis
-  rdb, s := setupTestRedis(t)
-  defer s.Close()
+	rdb, s := setupTestRedis(t)
+	defer s.Close()
 
 	pasteRepo := repositories.NewPasteRepository(rdb)
 	pasteService := NewPasteService(pasteRepo)
@@ -56,7 +56,7 @@ func TestBasicServices(t *testing.T) {
 
 	fmt.Println("Paste exists:", exists)
 
-  assert.Equal(t, 10, len(pasteID))
+	assert.Equal(t, 10, len(pasteID))
 
 	fmt.Println("PasteID length is:", len(pasteID))
 	// Retrieve paste

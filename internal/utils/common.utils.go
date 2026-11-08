@@ -8,20 +8,19 @@ import (
 )
 
 func HexStr(n int64) string {
-  return strconv.FormatInt(int64(n), 16)
+	return strconv.FormatInt(int64(n), 16)
 }
-
 
 func ParseSizeToBytes(sizeStr string) (uint64, error) {
 	// Define the unit multipliers in bytes
 	unitMultipliers := map[string]uint64{
-		"B":   1,
-		"KB":  1024,
-		"Kb":  1024 / 8,
-		"MB":  1024 * 1024,
-		"Mb":  (1024 * 1024) / 8,
-		"GB":  1024 * 1024 * 1024,
-		"Gb":  (1024 * 1024 * 1024) / 8,
+		"B":  1,
+		"KB": 1024,
+		"Kb": 1024 / 8,
+		"MB": 1024 * 1024,
+		"Mb": (1024 * 1024) / 8,
+		"GB": 1024 * 1024 * 1024,
+		"Gb": (1024 * 1024 * 1024) / 8,
 	}
 
 	// Use regex to extract the numeric part and the unit part

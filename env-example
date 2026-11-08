@@ -1,15 +1,32 @@
+# Host on which to listen
 HOST="0.0.0.0"
+
+# Listen port
 PORT=8080
-DOMAIN="gbin.me"
-LOG_FILE_PATH="./logs/ghostbin_server_log.dev.log"
-PASTE_UPLOAD_DIR="./data/paste_data_dev"
+
+# Domain, will use OS' hostname if unset
+DOMAIN=""
+
+# Log file, make sure it's writable. Will log to stdout if unset
+LOG_FILE_PATH="/var/log/ghostbin/ghostbin.log"
+
+# Uploads location. Will use /var/tmp/ghostbin if unset
+PASTE_UPLOAD_DIR="/var/tmp/ghostbin"
+
+# Maximum allowd upload file size
 MAX_FILE_SIZE=2MB
+
+# Changes log behavior
 RELEASE_MODE=dev
+
+# Log as text or JSON
 LOG_AS_TEXT=true
 
+# Static files served
 INDEX_FILE="./public/index.html"
 INDEX_FILE_CLI="./public/index_cli.html"
 
-REDIS_ADDRESS="redis:6379"
+# Redis options
+REDIS_ADDRESS="localhost:6379"
 REDIS_DB_NUMBER=0
 REDIS_PASSWORD=

@@ -8,8 +8,7 @@ import (
 	"github.com/0x30c4/ghostbin/pkg/log"
 	"github.com/0x30c4/ghostbin/pkg/redis"
 	"github.com/0x30c4/ghostbin/pkg/webappsrv"
-	_ "github.com/joho/godotenv/autoload"
-	"golang.org/x/exp/slog"
+	"log/slog"
 )
 
 var (
@@ -35,10 +34,24 @@ func main() {
 		slog.String("release_mode", os.Getenv("RELEASE_MODE")),
 	)
 
+	if uploadDir == "" {
+		uploadDir = "/var/tmp/ghostbin"
+		// Creating directory if it does not exist
+		err := os.MkdirAll(uploadDir, 0644)
+		if err != nil {
+			slog.Error("Couldn't create temp directory, exiting.", slog.Any("error", err), slog.String("directory", uploadDir))
+			os.Exit(1)
+		}
+		slog.Info("No upload directory provided, defaulting to", slog.String("directory", uploadDir))
+	}
+
 	redisConn, err := redis.NewConnectionFromEnvVar()
 
 	if err != nil {
-		logger.Error("failed to connect to redis database", slog.String("err", err.Error()))
+		logger.Error(
+			"failed to connect to redis database",
+			slog.String("err", err.Error()),
+		)
 		return
 	}
 	defer func() {

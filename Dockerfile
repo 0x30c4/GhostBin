@@ -5,11 +5,12 @@ COPY go.mod go.sum ./
 RUN go mod download
 RUN go install github.com/air-verse/air@v1.61.1
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -o ./bin/ghostbin ./cmd/webapp/main.go
+ARG CGO_ENABLED=0
+ARG GOOS=linux
+RUN go build -ldflags "-w -s" -o ./bin/ghostbin ./cmd/webapp/main.go
 
 # deploy
-FROM alpine:latest
-RUN apk --no-cache add ca-certificates
+FROM gcr.io/distroless/static-debian13 as worker
 WORKDIR /app
 COPY --from=builder /app .
 EXPOSE 8080
